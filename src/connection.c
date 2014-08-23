@@ -287,9 +287,18 @@ wl_connection_flush(struct wl_connection *connection)
 		msg.msg_namelen = 0;
 		msg.msg_iov = iov;
 		msg.msg_iovlen = count;
-		msg.msg_control = cmsg;
-		msg.msg_controllen = clen;
+		msg.msg_control = NULL;
+		msg.msg_controllen = 0;
 		msg.msg_flags = 0;
+
+		/* FreeBSD requires msg_control to be set to NULL if
+		 * msg_controllen is 0 (see
+		 * https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=99356#c5)
+		 * Can't hurt to do that on all platforms. */
+		if (clen > 0) {
+			msg.msg_controllen = clen;
+			msg.msg_control = cmsg;
+		}
 
 		do {
 			len = sendmsg(connection->fd, &msg,
