@@ -283,7 +283,7 @@ shm_pool_resize(struct wl_client *client, struct wl_resource *resource,
 	fd = pool->fd;
 #endif
 
-	data = mremap_compat_maypool(pool->data, pool->size, size,
+	data = mremap_compat_maymove(pool->data, pool->size, size,
 				     PROT_READ | PROT_WRITE, MAP_SHARED, fd);
 
 	if (data == MAP_FAILED) {

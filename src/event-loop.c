@@ -713,7 +713,7 @@ wl_event_loop_dispatch(struct wl_event_loop *loop, int timeout)
 		
 	return 0;
 }
-+#elif HAVE_SYS_EVENT_H
+#elif HAVE_SYS_EVENT_H
 WL_EXPORT int
 wl_event_loop_dispatch(struct wl_event_loop *loop, int timeout)
 {

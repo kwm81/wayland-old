@@ -44,7 +44,7 @@ wl_os_epoll_create_cloexec(void);
 
 #ifdef HAVE_SYS_EVENT_H
 int
-wl_os_kqeueue_create_cloexec(void);
+wl_os_kqueue_create_cloexec(void);
 #endif
 
 int
