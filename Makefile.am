@@ -149,7 +149,7 @@ libtest_runner_la_LIBADD =			\
 	libwayland-util.la			\
 	libwayland-client.la			\
 	libwayland-server.la			\
-	-lrt $(LD_LIBS) $(FFI_LIBS)
+	-lrt $(DL_LIBS) $(FFI_LIBS)
 
 
 array_test_SOURCES = tests/array-test.c
