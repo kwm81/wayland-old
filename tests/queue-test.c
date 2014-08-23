@@ -20,6 +20,8 @@
  * OF THIS SOFTWARE.
  */
 
+#include "../config.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -27,6 +29,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <assert.h>
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
+#endif
 
 #include "wayland-client.h"
 #include "wayland-server.h"
@@ -66,7 +71,7 @@ client_test_proxy_destroy(void)
 	assert(registry != NULL);
 	wl_registry_add_listener(registry, &registry_listener,
 				 &counter);
-	wl_display_roundtrip(display);
+	assert(wl_display_roundtrip(display) > -1);
 
 	assert(counter == 1);
 
