@@ -87,7 +87,7 @@ struct wl_event_source_fd {
 	int fd;
 };
 
-#ifdef HAVE_SYS)_EPOLL_H
+#ifdef HAVE_SYS_EPOLL_H
 static int
 wl_event_source_fd_dispatch(struct wl_event_source *source,
 			    struct epoll_event *ep)
@@ -322,7 +322,6 @@ wl_event_loop_add_timer(struct wl_event_loop *loop,
 					 TFD_CLOEXEC | TFD_NONBLOCK);
 
 	return add_source(loop, &source->base, WL_EVENT_READABLE, data);
-#else
 #else
        /* FreeBSD. We use kqueue() timers directly.
         * See: wl_event_source_timer_update(). */
