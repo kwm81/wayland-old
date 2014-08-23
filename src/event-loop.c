@@ -48,9 +48,6 @@
 #error "Unsupported event system. Only epoll and kqueue are supported."
 #endif
 
-#include <sys/epoll.h>
-#include <sys/signalfd.h>
-#include <sys/timerfd.h>
 #include <unistd.h>
 #include <assert.h>
 #include "wayland-private.h"
